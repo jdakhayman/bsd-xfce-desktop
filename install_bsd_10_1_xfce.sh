@@ -109,12 +109,16 @@ EOF
 echo 'Setup /etc/sysctl.conf'
 cat << EOF >> /etc/sysctl.conf
 # Enhance shared memory X11 interface
-kern.ipc.shmmax=67108864
-kern.ipc.shmall=32768
+# grep memory /var/run/dmesg.boot
+kern.ipc.shmmax=35148267520
+# kern.ipc.shmmax / 4096
+kern.ipc.shmall=8581120
 # Enhance desktop responsiveness under high CPU use (200/224)
 kern.sched.preempt_thresh=224
 # Bump up maximum number of open files
 kern.maxfiles=200000
+#Required for chrome
+kern.ipc.shm_allow_removed=1
 # Disable PC Speaker
 hw.syscons.bell=0
 EOF
