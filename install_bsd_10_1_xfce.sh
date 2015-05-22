@@ -1,6 +1,6 @@
 #!/bin/csh
 #
-# Install Script: Primary Desktop version 0.1.0 ( Last changed on 05/16/15_5:26pm)
+# Install Script: Primary Desktop version 0.1.0 ( Last changed on 05/21/15_9:45pm)
 #
 # This is my Primary script for personal use in my home and my office.
 #
@@ -165,8 +165,8 @@ echo 'Installing Mplayer media player'
 make -C /usr/ports/multimedia/mplayer/ install clean disclean
 
 # Insatll lame mp3 encoder
-echo ' Installing Lame mp3 Encoder'
-make -C /usr/ports/audio/lame/ install clean disclean
+echo 'Installing Lame mp3 Encoder'
+make -C /usr/ports/audio/lame/ install clean distclean
 
 # Rehash so shell will see new binarys that have been installed
 echo ' Rehashing so the shell will see the new binaries'
@@ -175,8 +175,8 @@ rehash
 ###########################
 # Reverse auto yes for pkg# 
 ###########################
-echo 'Reverse always yes for pkgng from intial package install so I dont have to later cause I'll forget.'
-sed -i.bak -e 's|#ASSUME_ALWAYS_YES = true;|ASSUME_ALWAYS_YES = false;|' /usr/local/etc/pkg.conf
+echo 'Reverse always yes for pkgng from intial package install so I dont have to later cause I will forget.'
+sed -i.bak -e 's|ASSUME_ALWAYS_YES = true;|ASSUME_ALWAYS_YES = false;|' /usr/local/etc/pkg.conf
 
 
 ####################
