@@ -157,7 +157,7 @@ portsnap fetch extract update
 
 # Install what few ports that are not available as packages.
 # Install automount
-echo 'Installing automout
+echo 'Installing automout'
 make -C /usr/ports/sysutils/automount/ install clean disclean
 
 # Install mplayer
