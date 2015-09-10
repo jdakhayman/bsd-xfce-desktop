@@ -47,7 +47,6 @@ cp /dev/null /etc/fstab
 echo '\
 # Device                Mountpoint      FStype  Options         Dump    Pass#\
 /dev/gpt/swap0          none            swap    sw              0       0\
-proc                    /proc           procfs  rw              0       0\
 ' > /etc/fstab
 
 # Setup /etc/rc.conf
@@ -96,7 +95,6 @@ clear_tmp_enable="YES"\
 echo 'Setup /boot/loader.conf'
 cat << EOF >> /boot/loader.conf
 #Boot-time drivers
-linux_load="YES"
 nvidia_load="YES"
 # Boot-time kernel tuning
 kern.vty=vt
@@ -117,8 +115,6 @@ kern.ipc.shmall=8581120
 kern.sched.preempt_thresh=224
 # Bump up maximum number of open files
 kern.maxfiles=200000
-#Required for chrome
-kern.ipc.shm_allow_removed=1
 # Disable PC Speaker
 hw.syscons.bell=0
 EOF
@@ -160,10 +156,6 @@ portsnap fetch extract update
 echo 'Installing automout'
 make -C /usr/ports/sysutils/automount/ install clean disclean
 
-# Install mplayer
-echo 'Installing Mplayer media player'
-make -C /usr/ports/multimedia/mplayer/ install clean disclean
-
 # Insatll lame mp3 encoder
 echo 'Installing Lame mp3 Encoder'
 make -C /usr/ports/audio/lame/ install clean distclean
@@ -193,7 +185,7 @@ nvidia-xconfig
 ####################
 #Slim Setup        #
 ####################
-# Setup Slim by coping the sample file over.
+# Setup Slim by copying the sample file over.
 echo 'Copy slim config file from default.'
 cp /usr/local/etc/slim.conf.sample /usr/local/etc/slim.conf
 
