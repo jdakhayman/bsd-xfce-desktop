@@ -127,15 +127,20 @@ EOF
 echo 'Bootstrapping / installing pkgng on FreeBSD unattended and without answering Yes.'
 env ASSUME_ALWAYS_YES=YES pkg bootstrap
 
+# In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.
+echo 'In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.'
+echo 'Make directory for the new file as descrbed in /etc/pkg/FreeBSD.conf'
+mkdir /usr/local/etc/pkg/repo
+echo 'Write file.'
+cat << EOF >> /usr/local/etc/pkg/repos/FreeBSD.conf
+FreeBSD: {
+  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest"
+}
+EOF
+
 # Update pkgng repo on local system
 echo 'Update pkgng repo on local system'
 pkg update -f
-
-# Setup pkgng pkg.conf to answer yes always when installing packages.
-echo 'Setup pkgng pkg.conf to answer yes always when installing packages.'
-cp /usr/local/etc/pkg.conf.sample /usr/local/etc/pkg.conf
-
-sed -i.bak -e 's|#ASSUME_ALWAYS_YES = false;|ASSUME_ALWAYS_YES = true;|' /usr/local/etc/pkg.conf
 
 # Load linux kernel module so packages that want it on install dont complain.
 echo 'Loading linux kernel module'
