@@ -132,12 +132,11 @@ echo 'In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on late
 echo 'Make directory for the new file as descrbed in /etc/pkg/FreeBSD.conf'
 mkdir /usr/local/etc/pkg/repo
 echo 'Write file.'
-cat << EOF >> /usr/local/etc/pkg/repos/FreeBSD.conf
-FreeBSD: {
-  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest"
-}
-EOF
-
+echo '\ 
+FreeBSD:{\
+  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest"\
+}\
+' > /usr/local/etc/pkg/repos/FreeBSD.conf
 # Update pkgng repo on local system
 echo 'Update pkgng repo on local system'
 pkg update -f
