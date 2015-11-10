@@ -168,13 +168,6 @@ make -C /usr/ports/audio/lame/ install clean distclean
 echo ' Rehashing so the shell will see the new binaries'
 rehash 
 
-###########################
-# Reverse auto yes for pkg# 
-###########################
-echo 'Reverse always yes for pkgng from intial package install so I dont have to later cause I will forget.'
-sed -i.bak -e 's|ASSUME_ALWAYS_YES = true;|ASSUME_ALWAYS_YES = false;|' /usr/local/etc/pkg.conf
-
-
 ####################
 #  Xorg            # 
 ####################
