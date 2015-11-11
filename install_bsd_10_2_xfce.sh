@@ -1,6 +1,6 @@
 #!/bin/csh
 #
-# Install Script: Primary Desktop version 0.1.0 ( Last changed on 11/11/15_9:11am )
+# Install Script: Primary Desktop version 0.1.0 ( Last changed on 11/11/15_2:41am )
 #
 # This is my Primary script for personal use in my home and my office.
 #
@@ -92,9 +92,6 @@ clear_tmp_enable="YES"\
 ' > /etc/rc.conf
 
 # Setup /boot/loader.conf
-echo 'Clear out default /boot/loader.conf and replace with custom /boot/loader.conf'
-cp /dev/null /boot/loader.conf
-echo 'Setup /boot/loader.conf'
 cat << EOF >> /boot/loader.conf
 #Boot-time drivers
 nvidia_load="YES"
@@ -127,13 +124,15 @@ EOF
 # In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.
 echo 'In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.'
 echo 'Make directory for the new file as descrbed in /etc/pkg/FreeBSD.conf'
-mkdir -p /usr/local/etc/pkg/repo
+
+mkdir -p /usr/local/etc/pkg/repos
+
 echo 'Write file.'
-echo '\ 
-FreeBSD:{\
-  url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest"\
-}\
-' > /usr/local/etc/pkg/repos/FreeBSD.conf
+cat << EOF >>  /usr/local/etc/pkg/repos/FreeBSD.conf
+FreeBSD:{
+  url: "pkg+http://pkg.FreeBSD.org/\${ABI}/latest"
+}
+EOF
 
 # Set enviroment varible to allow bootstrapping / installing pkgng  
 # on FreeBSD unattended and without answering Yes.
@@ -150,7 +149,7 @@ echo 'Loading linux kernel module'
 kldload linux
 
 # Install packages for desktop use.
-pkg install xorg-server xf86-input-keyboard xf86-input-mouse xinit xauth nvidia-driver nvidia-xconfig slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
+pkg install xorg-server xf86-input-keyboard xf86-input-mouse xinit xauth nvidia-driver slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
 
 ####################
 #  Ports Stuff     #
@@ -162,7 +161,7 @@ portsnap fetch extract update
 # Install what few ports that are not available as packages.
 # Install automount
 echo 'Installing automout'
-make -C /usr/ports/sysutils/automount/ install clean disclean
+make -C /usr/ports/sysutils/automount/ install clean distclean
 
 # Insatll lame mp3 encoder
 echo 'Installing Lame mp3 Encoder'
