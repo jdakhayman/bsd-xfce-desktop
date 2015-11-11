@@ -1,6 +1,6 @@
 #!/bin/csh
 #
-# Install Script: Primary Desktop version 0.1.0 ( Last changed on 08/29/15_1:58pm)
+# Install Script: Primary Desktop version 0.1.0 ( Last changed on 11/11/15_9:11am )
 #
 # This is my Primary script for personal use in my home and my office.
 #
@@ -92,6 +92,8 @@ clear_tmp_enable="YES"\
 ' > /etc/rc.conf
 
 # Setup /boot/loader.conf
+echo 'Clear out default /boot/loader.conf and replace with custom /boot/loader.conf'
+cp /dev/null /boot/loader.conf
 echo 'Setup /boot/loader.conf'
 cat << EOF >> /boot/loader.conf
 #Boot-time drivers
@@ -122,21 +124,23 @@ EOF
 #####################
 #  PKGNG            #
 #####################
-# Bootstrapping / installing pkgng on FreeBSD unattended and 
-# without answering Yes.
-echo 'Bootstrapping / installing pkgng on FreeBSD unattended and without answering Yes.'
-env ASSUME_ALWAYS_YES=YES pkg bootstrap
-
 # In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.
 echo 'In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.'
 echo 'Make directory for the new file as descrbed in /etc/pkg/FreeBSD.conf'
-mkdir /usr/local/etc/pkg/repo
+mkdir -p /usr/local/etc/pkg/repo
 echo 'Write file.'
 echo '\ 
 FreeBSD:{\
   url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest"\
 }\
 ' > /usr/local/etc/pkg/repos/FreeBSD.conf
+
+# Set enviroment varible to allow bootstrapping / installing pkgng  
+# on FreeBSD unattended and without answering Yes.
+echo 'Bootstrapping / installing pkgng on FreeBSD unattended and without answering Yes.'
+env ASSUME_ALWAYS_YES=YES pkg bootstrap
+
+
 # Update pkgng repo on local system
 echo 'Update pkgng repo on local system'
 pkg update -f
