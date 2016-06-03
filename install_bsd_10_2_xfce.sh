@@ -1,10 +1,10 @@
 #!/bin/csh
 #
-# Install Script: Primary Desktop version 0.1.0 ( Last changed on 11/11/15_2:41am )
+# Install Script: Primary Desktop version 0.1.0 ( Last changed on 06/13/16_7:39am )
 #
 # This is my Primary script for personal use in my home and my office.
 #
-# It is based on FreeBSD 10.2-RELEASE and using both ports and pre-built binaries.
+# It is based on FreeBSD 10.3-RELEASE and using both ports and Project pre-built binaries.
 #
 # This script uses Xfce 4.12 as the Desktop Enviroment
 #
@@ -78,7 +78,7 @@ dbus_enable="YES"\
 mixer_enable="YES"\
 # Disable line printer daemon. Dont need it.\
 lpd_enable="NO"\
-# This script is for a desktop. Dont need this.\
+# This script is for a desktop. Dont want this.\
 sendmail_enable="NONE"\
 sendmail_submit_enable="NO"\
 sendmail_outbound_enable="NO"\
@@ -122,7 +122,7 @@ EOF
 #  PKGNG            #
 #####################
 # In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.
-echo 'In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.'
+echo 'In FreeBSD 10.2 and forward the pkg repo is set to quarterly. I prefer to stay on latest.'
 echo 'Make directory for the new file as descrbed in /etc/pkg/FreeBSD.conf'
 
 mkdir -p /usr/local/etc/pkg/repos
