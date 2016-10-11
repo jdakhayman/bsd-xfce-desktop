@@ -1,10 +1,10 @@
 #!/bin/csh
 #
-# Install Script: Primary Desktop version 0.1.0 ( Last changed on 06/13/16_7:39am )
+# Install Script: Primary Desktop version 0.1.1 ( Last changed on 10/11/16_10:44am )
 #
 # This is my Primary script for personal use in my home and my office.
 #
-# It is based on FreeBSD 10.3-RELEASE and using both ports and Project pre-built binaries.
+# It is based on FreeBSD 11.0-RELEASE and using both ports and Project pre-built binaries.
 #
 # This script uses Xfce 4.12 as the Desktop Enviroment
 #
