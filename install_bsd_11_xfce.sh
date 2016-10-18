@@ -96,7 +96,6 @@ cat << EOF >> /boot/loader.conf
 #Boot-time drivers
 nvidia_load="YES"
 # Boot-time kernel tuning
-kern.vty=vt
 kern.ipc.shmseg=1024
 kern.ipc.shmmni=1024
 kern.maxproc=10000 
