@@ -46,7 +46,7 @@ echo 'Clear out default  fstab and replace with custom fstab'
 cp /dev/null /etc/fstab
 echo '\
 # Device                Mountpoint      FStype  Options         Dump    Pass#\
-/dev/gpt/swap0          none            swap    sw              0       0\
+/dev/ada0p2             none            swap    sw              0       0\
 ' > /etc/fstab
 
 # Setup /etc/rc.conf
@@ -59,7 +59,7 @@ echo '\
 # File System and CPU\
 zfs_enable="YES"\
 powerd_enable="YES"\
-powerd_flags="-a hiadaptive -b adaptive"\
+powerd_flags="-a hiadaptive -b adaptive -n adaptive"\
 \
 # Networking startup and hostname.\
 hostname="fletcher-1.lan"\
@@ -88,13 +88,14 @@ fsck_y_enable="YES"\
 background_fsck="YES"\
 # Clear out the /tmp folder on reboots.\
 clear_tmp_enable="YES"\
+Xorgclear_tmp_enable="YES"\
 # Secondary Programs.\
 ' > /etc/rc.conf
 
 # Setup /boot/loader.conf
 cat << EOF >> /boot/loader.conf
 #Boot-time drivers
-nvidia_load="YES"
+
 # Boot-time kernel tuning
 kern.ipc.shmseg=1024
 kern.ipc.shmmni=1024
@@ -148,38 +149,7 @@ echo 'Loading linux kernel module'
 kldload linux
 
 # Install packages for desktop use.
-pkg install xorg-server xf86-input-keyboard xf86-input-mouse xinit xauth nvidia-driver slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
-
-####################
-#  Ports Stuff     #
-####################
-# Fetch portstree, extract, and update
-echo 'Fetch ports tree so we can build the few ports that are not available as packages or the options dont suit me.'
-portsnap fetch extract update
-
-# Install what few ports that are not available as packages.
-# Install automount
-echo 'Installing automout'
-make -C /usr/ports/sysutils/automount/ install clean distclean
-
-# Insatll lame mp3 encoder
-echo 'Installing Lame mp3 Encoder'
-make -C /usr/ports/audio/lame/ install clean distclean
-
-# Rehash so shell will see new binarys that have been installed
-echo ' Rehashing so the shell will see the new binaries'
-rehash 
-
-####################
-#  Xorg            # 
-####################
-# Load nvidia kernel module
-echo 'Loading nvidia kernel module'
-kldload nvidia
-# Use the nvidia-xconfig utility to make and setup the inital xorg config file.
-# I know, it's a cheat.
-echo 'Use the nvidia-xconfig utility to make and setup the inital xorg config file.'
-nvidia-xconfig
+pkg install xorg-server xf86-input-keyboard xf86-input-mouse xinit xauth slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
 
 ####################
 #Slim Setup        #
