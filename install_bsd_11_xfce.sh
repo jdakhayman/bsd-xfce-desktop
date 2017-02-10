@@ -104,8 +104,6 @@ acpi_ibm_load="YES"
 acpi_video_load="YES"
 # Boot-time kernel tuning for memory and power consumption.
 drm.i915.enable_rc6=7
-hint.p4tcc.0.disabled=1                                                                                                                                                                                              
-hint.acpi_throttle.0.disabled=1 
 kern.ipc.shmseg=1024
 kern.ipc.shmmni=1024
 kern.maxproc=10000 
