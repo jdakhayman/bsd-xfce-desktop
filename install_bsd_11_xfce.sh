@@ -1,6 +1,6 @@
-#!/bin/csh
+#!/bin/sh
 #
-# Install Script: Primary Desktop version 0.1.1 ( Last changed on 10/11/16_10:44am )
+# Install Script: Primary Desktop version 1
 #
 # This is my Primary script for personal use in my home and my office.
 #
@@ -60,6 +60,8 @@ echo '\
 zfs_enable="YES"\
 powerd_enable="YES"\
 powerd_flags="-a hiadaptive -b adaptive -n adaptive"\
+performance_cx_lowest="Cmax"\
+economy_cx_lowest="Cmax"\
 \
 # Networking startup and hostname.\
 hostname="fletcher-1.lan"\
@@ -76,6 +78,8 @@ ntpd_sync_on_start="YES"\
 # Services needed by the desktop.\
 dbus_enable="YES"\
 mixer_enable="YES"\
+moused_enable="YES"\
+moused_flags="-VH"\
 # Disable line printer daemon. Dont need it.\
 lpd_enable="NO"\
 # This script is for a desktop. Dont want this.\
@@ -95,8 +99,13 @@ Xorgclear_tmp_enable="YES"\
 # Setup /boot/loader.conf
 cat << EOF >> /boot/loader.conf
 #Boot-time drivers
-
-# Boot-time kernel tuning
+i915kms_load="YES"
+acpi_ibm_load="YES"                                                                                                                                                                                                  
+acpi_video_load="YES"
+# Boot-time kernel tuning for memory and power consumption.
+drm.i915.enable_rc6=7
+hint.p4tcc.0.disabled=1                                                                                                                                                                                              
+hint.acpi_throttle.0.disabled=1 
 kern.ipc.shmseg=1024
 kern.ipc.shmmni=1024
 kern.maxproc=10000 
@@ -149,7 +158,7 @@ echo 'Loading linux kernel module'
 kldload linux
 
 # Install packages for desktop use.
-pkg install xorg-server xf86-input-keyboard xf86-input-mouse xinit xauth slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
+pkg install xorg-server xf86-video-intel xf86-input-keyboard xf86-input-mouse xinit xauth slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
 
 ####################
 #Slim Setup        #
@@ -177,9 +186,9 @@ cp /usr/local/etc/xdg/xfce4/xinitrc /usr/share/skel/dot.xinitrc
 
 # Download some cool backgrounds and icon images and place them in the proper directories.
 echo 'Download some cool backgrounds and icon images and place them in the proper directories.'
-fetch -o /usr/local/share/backgrounds/xfce/a_1600x900.jpg  http://www.broadstreetchurchofchrist.org/images/a_1600x900.jpg
+fetch -o /usr/local/share/backgrounds/xfce/a_1600x900.jpg  http://ugmmutil.info.tm/images/a_1600x900.jpg
 
-fetch -o /usr/local/share/pixmaps/Freebsd-logo.png http://www.broadstreetchurchofchrist.org/images/Freebsd-logo.png
+fetch -o /usr/local/share/pixmaps/Freebsd-logo.png http://ugmmutil.info.tm/images/Freebsd-logo.png
 
 
 #######################
