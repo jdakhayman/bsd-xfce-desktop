@@ -131,6 +131,7 @@ EOF
 #  PKGNG            #
 #####################
 # In FreeBSD 10.2 the pkg repo is set to quarterly. I prefer to stay on latest.
+# See https://forums.freebsd.org/threads/52843/ 
 echo 'In FreeBSD 10.2 and forward the pkg repo is set to quarterly. I prefer to stay on latest.'
 echo 'Make directory for the new file as descrbed in /etc/pkg/FreeBSD.conf'
 
