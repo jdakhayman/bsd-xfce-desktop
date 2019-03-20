@@ -64,15 +64,19 @@ performance_cx_lowest="Cmax"\
 economy_cx_lowest="Cmax"\
 \
 # Networking startup and hostname.\
-hostname="fletcher-1.lan"\
+hostname="fletcher-3.lan"\
 background_dhclient="YES" \
-network_interfaces="em0"\
-ifconfig_em0="DHCP"\
+# network_interfaces="em0"\
+# ifconfig_em0="DHCP"\
+wlans_iwn0=wlan0\
+ifconfig_wlans0="WPA DHCP"\
+create_args_wlans0="country US regdomain FCC"\
 \
 # Stuff to startup, or to keep from starting\
 # Disable syslogs to remote devices.\
 syslogd_flags="-ss"\
 # Start ntp and sync the clock.\
+ntpdate_enable="YES"\
 ntpd_enable="YES"\
 ntpd_sync_on_start="YES"\
 # Services needed by the desktop.\
