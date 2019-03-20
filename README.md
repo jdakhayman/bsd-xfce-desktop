@@ -5,10 +5,10 @@ Config Script: Primary Desktop version 1
 
 This is my Primary script for personal use in my home and my office.
 
-It is configured on top of FreeBSD 11.0-RELEASE 
+It is configured on top of the most up to date releng version of FreeBSD 
 and is using both ports and pre-built binaries.
 
-This script uses Xfce 4.12 as the Desktop Enviroment
+This script uses Xfce on the latest version as the Desktop Enviroment.
 
 It is, as it stands now, very customized to my personal needs
 and has gone though several versions even before I started to
