@@ -69,7 +69,7 @@ background_dhclient="YES" \
 # network_interfaces="em0"\
 # ifconfig_em0="DHCP"\
 wlans_iwn0="wlan0"\
-ifconfig_wlans0="WPA DHCP"\
+ifconfig_wlan0="WPA DHCP"\
 create_args_wlans0="country US regdomain FCC"\
 \
 # Stuff to startup, or to keep from starting\
