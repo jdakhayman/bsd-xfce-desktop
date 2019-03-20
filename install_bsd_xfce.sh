@@ -4,9 +4,9 @@
 #
 # This is my Primary script for personal use in my home and my office.
 #
-# It is based on FreeBSD 11.0-RELEASE and using both ports and Project pre-built binaries.
+# It is based on FreeBSD Lasterst releng and using both ports and Project pre-built binaries.
 #
-# This script uses Xfce 4.12 as the Desktop Enviroment
+# This script uses Xfce lastest version as the Desktop Enviroment.
 #
 # It is, as it stands now, very customized to my personal needs
 # and has gone though several versions even before I started to
@@ -68,7 +68,7 @@ hostname="fletcher-3.lan"\
 background_dhclient="YES" \
 # network_interfaces="em0"\
 # ifconfig_em0="DHCP"\
-wlans_iwn0=wlan0\
+wlans_iwn0="wlan0"\
 ifconfig_wlans0="WPA DHCP"\
 create_args_wlans0="country US regdomain FCC"\
 \
