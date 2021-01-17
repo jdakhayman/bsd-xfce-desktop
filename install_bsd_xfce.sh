@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# Install Script: Primary Desktop version 1
-#
 # This is my Primary script for personal use in my home and my office.
 #
 # It is based on FreeBSD Lasterst releng and using both ports and Project pre-built binaries.
@@ -64,10 +62,8 @@ performance_cx_lowest="Cmax"\
 economy_cx_lowest="Cmax"\
 \
 # Networking startup and hostname.\
-hostname="fletcher-3.lan"\
+hostname="fletcher-2.lan"\
 background_dhclient="YES" \
-# network_interfaces="em0"\
-# ifconfig_em0="DHCP"\
 wlans_iwn0="wlan0"\
 ifconfig_wlan0="WPA DHCP"\
 create_args_wlans0="country US regdomain FCC"\
@@ -161,7 +157,7 @@ echo 'Loading linux kernel module'
 kldload linux
 
 # Install packages for desktop use.
-pkg install xorg-server xf86-video-intel xf86-input-keyboard xf86-input-mouse xinit xauth slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler cdrtools
+pkg install xorg-server xf86-video-intel xf86-input-keyboard xf86-input-mouse xinit xauth slim slim-themes xfce xfce4-weather-plugin xfce4-power-manager xfce4-mixer ristretto xscreensaver firefox filezilla zathura-pdf-poppler
 
 ####################
 #Slim Setup        #
@@ -188,30 +184,7 @@ cp /usr/local/etc/xdg/xfce4/xinitrc /usr/share/skel/dot.xinitrc
 
 
 # Download some cool backgrounds and icon images and place them in the proper directories.
-echo 'Download some cool backgrounds and icon images and place them in the proper directories.'
-fetch -o /usr/local/share/backgrounds/xfce/a_1600x900.jpg  http://ugmmutil.info.tm/images/a_1600x900.jpg
+# echo 'Download some cool backgrounds and icon images and place them in the proper directories.'
+# fetch -o /usr/local/share/backgrounds/xfce/a_1600x900.jpg  https://ander-son.net/images/a_1600x900.jpg
 
-fetch -o /usr/local/share/pixmaps/Freebsd-logo.png http://ugmmutil.info.tm/images/Freebsd-logo.png
-
-
-#######################
-#  Add user and keys  #
-#######################
-adduser
-
-echo 'Copying ssh keys into .ssh so I can sftp into NAS and download my'
-echo 'home directory'
-
-mkdir /usr/home/jda/.ssh
-chmod 700 /usr/home/jda/.ssh
-chown jda:jda /usr/home/jda/.ssh
-
-cp /media/id_rsa /usr/home/jda/.ssh
-chmod 600 /usr/home/jda/.ssh/id_rsa
-chown jda:jda /usr/home/jda/.ssh/id_rsa
-
-cp /media/janderson.ppk /usr/home/jda/.ssh
-chmod 600 /usr/home/jda/.ssh/janderson.ppk
-chown jda:jda /usr/home/jda/.ssh/janderson.ppk
-
-echo 'Log off; Then back on as your new user and downlod your home directory; Reboot'
+# fetch -o /usr/local/share/pixmaps/Freebsd-logo.png https://ander-son.net/images/Freebsd-logo.png
