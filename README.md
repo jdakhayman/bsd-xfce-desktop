@@ -1,8 +1,6 @@
 # bsd-xfce-desktop
 Build an xfce desktop with FreeBSD
 
-Config Script: Primary Desktop version 1
-
 This is my Primary script for personal use in my home and my office.
 
 It is configured on top of the most up to date releng version of FreeBSD 
